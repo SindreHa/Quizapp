@@ -34,7 +34,7 @@ export default function App() {
         <Quiz isDone={isDone} setDone={setDone}/>
       </SlideIn>
       <SlideIn in={isDone} delay={0}>
-        <Results result={"4 riktige"}/>
+        <Results setDone={setDone} result={"4 riktige"}/>
       </SlideIn>
     </div>
   );

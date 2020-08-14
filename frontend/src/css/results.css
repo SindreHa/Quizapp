@@ -15,3 +15,18 @@
     margin: 0px 10px 30px;
     font-size: 15pt;
 }
+.results-container button {
+    font-size: 12pt;
+    padding: 10px 25px;
+    border: none;
+    color: white;
+    background-color: var(--accent);
+    border-radius: 5px;
+    margin: 0px 0 30px;
+    transition: filter .15s ease-out, opacity .15s ease-out;
+}
+.results-container button:hover {
+    transition: none;
+    cursor: pointer;
+    filter: brightness(1.2);
+}
