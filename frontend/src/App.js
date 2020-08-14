@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+import { CSSTransition }  from 'react-transition-group';
 import './App.css';
+import Quiz from './components/Quiz';
 
 function App() {
+
+  const SlideIn = ({in: inProp, children, delay}) => (
+    
+    <CSSTransition
+        unmountOnExit
+        in={inProp}
+        timeout={delay}
+        classNames='slideIn'
+        appear >
+            {children}
+    </CSSTransition>
+  );
 
   const [text, setText] = useState("")
 
@@ -12,24 +25,13 @@ function App() {
     .then(message => setText(message))
   }
 
-  hello()
+  //hello()
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {text}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SlideIn in={true} delay={0}>
+        <Quiz />
+      </SlideIn>
     </div>
   );
 }

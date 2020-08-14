@@ -1,38 +1,99 @@
+:root {
+  --background: #264653;
+  --backgroundLight: #fff;
+  --backgroundDark: #494949;
+  --accent: #2a9d8f;
+  --accentSecondary: #e76f51;
+  --selected: #e9c46a;
+}
+
+body {
+  background: var(--background);
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+.quiz-container {
+  margin-top: 100px;
+  background-color: var(--backgroundLight);
+  width: 700px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.4);
+}
+
+.quiz-container h1{
+  font-family: 'Bebas Neue', cursive;
+  font-weight: normal;
+  font-size: 30pt;
+  margin: 30px 10px 20px;
+}
+
+.quiz-container .option {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 60%;
+  height: 50px;
+  margin: 0 auto 10px;
+  border-radius: 5px;
+  border: 2px solid var(--accentSecondary);
+  background-color: var(--backgroundLight);
+  transition: background-color .15s ease-out, color .15s ease-out;
+}
+
+.quiz-container .option:hover {
+  transition: none;
+  cursor: pointer;
+  background-color: var(--accentSecondary);
+  color: white
+}
+
+.quiz-container .option p{
+  margin: 0;
+  font-size: 13pt;
+}
+
+.quiz-container button {
+  font-size: 12pt;
+  padding: 10px 25px;
+  border: none;
   color: white;
+  background-color: var(--accent);
+  border-radius: 5px;
+  margin: 20px 0 30px;
+  transition: filter .15s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+.quiz-container button:hover {
+  transition: none;
+  cursor: pointer;
+  filter: brightness(1.2);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.progress-container {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 30px;
+}
+
+.progress-container div{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #b3b3b3;
+  transition: transform .15s ease-out, background-color .15s ease-out;
+}
+
+#currentPosition {
+  background-color: var(--accent);
+  transform: scale(1.5);
 }

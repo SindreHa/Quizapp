@@ -1,13 +1,28 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Component transitions */
+.slideIn-appear {
+  opacity: 0;
+  transform: translatey(100px)
+}
+.slideIn-enter {
+	opacity: 0;
+}
+.slideIn-enter-done {
+  opacity: 1;
+  transform: translatey(0px);
+	transition: opacity .7s, transform .7s cubic-bezier(.30,.99,.50,1);
+}
+.slideIn-exit {
+	opacity: 1;
+}
+.slideIn-exit-active {
+	opacity: 0;
+	transition: opacity 500ms;
+}
+@keyframes slideInAnim {
+  from {transform: translatey(500px)}
+  to {transform: translatey(0px)}
 }
