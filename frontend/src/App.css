@@ -61,6 +61,11 @@ body {
   font-size: 13pt;
 }
 
+.quiz-container .option.selected{
+  background-color: var(--accentSecondary);
+  color: white
+}
+
 .quiz-container button {
   font-size: 12pt;
   padding: 10px 25px;
@@ -69,7 +74,17 @@ body {
   background-color: var(--accent);
   border-radius: 5px;
   margin: 20px 0 30px;
-  transition: filter .15s ease-out;
+  transition: filter .15s ease-out, opacity .15s ease-out;
+}
+
+.quiz-container button:disabled {
+  opacity: .5;
+}
+
+.quiz-container button:disabled:hover {
+  transition: none;
+  cursor: not-allowed;
+  filter: initial;
 }
 
 .quiz-container button:hover {
