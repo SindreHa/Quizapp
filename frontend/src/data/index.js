@@ -7,20 +7,20 @@ export const quizData = [
     },
     {
       id: 1,
-      question: `Who is the CEO of Tesla Motors?`,
-      options: [`Bill Gates`, `Steve Jobs`, `Elon Musk`],
+      question: `Hvem er CEO for Tesla Motors?`,
+      options: [`Bill Gates`, `Tim Cook`, `Elon Musk`],
       answer: `Elon Musk`
     },
     {
       id: 3,
-      question: `Name World's Richest Man?`,
-      options: [`Jeff Bezo`, `Bill Gates`, `Mark Zuckerberg`],
+      question: `Hvem malte Mona Lisa?`,
+      options: [`Claude Monet`, `Leonardo da Vinci `, `Vincent Van Gogh`, `Pablo Picasso`],
       answer: `Jeff Bezo`
     },
     {
       id: 4,
-      question: `World's Longest River?`,
-      options: [`River Nile`, `River Amazon`, `River Godavari`],
+      question: `Hva er verdens lengste elv?`,
+      options: [`Nilen`, `Glomma`, `Amazonas-Apurímac`, `Mississippi–Missouri`],
       answer: `River Nile`
     }
   ];

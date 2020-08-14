@@ -10,7 +10,7 @@ export default class Quiz extends Component {
     constructor() {
         super()
         this.state = {
-            currentQuestion: 0,
+            currentQuestionIndex: 0,
             options: [],
             myAnswer: null,
             answers: [],
@@ -23,25 +23,24 @@ export default class Quiz extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const {currentQuestion} = this.state;
+        const {currentQuestionIndex} = this.state;
         /**
          * Sjekker at nåværende index ikke lik 
          * forrige index for å unngå infinite loop
          */
-        if(currentQuestion !== prevState.currentQuestion && currentQuestion < quizData.length) {
+        if(currentQuestionIndex !== prevState.currentQuestionIndex && currentQuestionIndex < quizData.length) {
             this.loadQuizData()
         }
     }
 
     loadQuizData = () => {
-        this.setState(() => {
-          return {
-            questionId: quizData[this.state.currentQuestion].id,
-            question: quizData[this.state.currentQuestion].question,
-            answer: quizData[this.state.currentQuestion].answer,
-            options: quizData[this.state.currentQuestion].options
-          };
-        });
+        const {currentQuestionIndex} = this.state;
+
+        this.setState({
+            questionId: quizData[currentQuestionIndex].id,
+            question: quizData[currentQuestionIndex].question,
+            options: quizData[currentQuestionIndex].options
+         });
     }
 
     logAnswer = () => {
@@ -59,16 +58,13 @@ export default class Quiz extends Component {
     nextQuestionHandler = () => {
         this.logAnswer()
         this.setState({myAnswer: null, disableButton: true})
-        //const { myAnswer, answer, score } = this.state;
 
-        /* if (myAnswer === answer) {
-            this.setState({
-            score: score + 1
-            });
-        } */
+        if (this.state.currentQuestionIndex === quizData.length-1) {
+            this.props.setDone(true)
+        }
 
         this.setState({
-            currentQuestion: this.state.currentQuestion+1
+            currentQuestionIndex: this.state.currentQuestionIndex+1
         });
     }
     
@@ -81,20 +77,30 @@ export default class Quiz extends Component {
         const {
             question, 
             options, 
-            currentQuestion, 
+            currentQuestionIndex, 
             myAnswer, 
             disableButton} 
         = this.state;
 
         return (
-            <div className="quiz-container">
-                <Question question={question}/>
-                <ProgressIndicator quizData={quizData} currentQuestion={currentQuestion}/>
-                <Options options={options} handler={this.selectionHandler} myAnswer={myAnswer}/>
+            <div ref={this.props.ref} className="quiz-container">
+                <Question 
+                    question={question}/>
+                <ProgressIndicator 
+                    quizData={quizData} 
+                    currentQuestionIndex={currentQuestionIndex}/>
+                <Options 
+                    options={options} 
+                    handler={this.selectionHandler} 
+                    myAnswer={myAnswer}/>
                 <button 
                     disabled={disableButton}
                     onClick={() => this.nextQuestionHandler()}>
-                    Neste spørsmål
+                    {
+                        currentQuestionIndex < quizData.length-1 
+                            ? "Neste spørsmål" 
+                            : "Se resultat"
+                    }
                 </button>
             </div>
         )

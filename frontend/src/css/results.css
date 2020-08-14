@@ -1,0 +1,17 @@
+.results-container {
+    margin-top: 100px;
+    background-color: var(--backgroundLight);
+    width: 700px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.4);
+}
+.results-container h1{
+    font-family: 'Bebas Neue', cursive;
+    font-weight: normal;
+    font-size: 30pt;
+    margin: 30px 10px;
+}
+.results-container p{
+    margin: 0px 10px 30px;
+    font-size: 15pt;
+}

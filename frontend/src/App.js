@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { CSSTransition }  from 'react-transition-group';
 import './App.css';
 import Quiz from './components/Quiz';
+import Results from './components/Results';
 
-function App() {
+export default function App() {
 
   const SlideIn = ({in: inProp, children, delay}) => (
     
@@ -17,23 +18,24 @@ function App() {
     </CSSTransition>
   );
 
-  const [text, setText] = useState("")
+  const [isDone, setDone] = useState(false)
 
-  const hello = () => {
+  /* const hello = () => {
     fetch('http://localhost:8080/api/hello')
     .then(response => response.text())
     .then(message => setText(message))
-  }
+  } */
 
   //hello()
 
   return (
     <div className="App">
-      <SlideIn in={true} delay={0}>
-        <Quiz />
+      <SlideIn in={!isDone} delay={0}>
+        <Quiz isDone={isDone} setDone={setDone}/>
+      </SlideIn>
+      <SlideIn in={isDone} delay={0}>
+        <Results result={"4 riktige"}/>
       </SlideIn>
     </div>
   );
 }
-
-export default App;

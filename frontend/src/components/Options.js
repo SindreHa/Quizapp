@@ -1,9 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 export default function Options(props) {
-
-    const print = (msg) => console.log(msg)
-    print()
 
     return (
         <>
@@ -13,7 +10,7 @@ export default function Options(props) {
                     onClick={() => {
                         props.handler(i)
                     }}
-                    key={option.id} 
+                    key={i} 
                     className={`option
                     ${props.myAnswer === i ? "selected" : null}`}>
                     <p>{option}</p>

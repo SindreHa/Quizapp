@@ -8,12 +8,12 @@ body {
   transform: translatey(100px)
 }
 .slideIn-enter {
-	opacity: 0;
+  opacity: 0;
 }
 .slideIn-enter-done {
   opacity: 1;
   transform: translatey(0px);
-	transition: opacity .7s, transform .7s cubic-bezier(.30,.99,.50,1);
+	transition: opacity .5s, transform .5s cubic-bezier(.40,.90,.40,1.15);
 }
 .slideIn-exit {
 	opacity: 1;
@@ -23,6 +23,7 @@ body {
 	transition: opacity 500ms;
 }
 @keyframes slideInAnim {
-  from {transform: translatey(500px)}
-  to {transform: translatey(0px)}
+  0% {transform: translatey(500px)}
+  80% {transform: translatey(-10px)}
+  100% {transform: translatey(0px)}
 }
