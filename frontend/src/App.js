@@ -30,6 +30,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <h1 id="header">Quiz app</h1>
       <SlideIn in={!isDone} delay={0}>
         <Quiz isDone={isDone} setDone={setDone}/>
       </SlideIn>

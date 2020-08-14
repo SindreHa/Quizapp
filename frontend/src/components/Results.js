@@ -6,7 +6,10 @@ export default function Results(props) {
         <div className="results-container">
             <h1>Resultat</h1>
             <p>{props.result}</p>
-            <button onClick={() => props.setDone(false)}>Ta quiz på nytt</button>
+            <button 
+                onClick={() => props.setDone(false)}>
+                Ta quiz på nytt
+            </button>
         </div>
     )
 }

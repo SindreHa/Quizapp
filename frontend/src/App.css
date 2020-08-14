@@ -18,5 +18,14 @@ body {
 .App {
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+#header {
+  font-family: 'Bebas Neue', cursive;
+  color: white;
+  font-size: 45pt;
+  user-select: none;
 }
