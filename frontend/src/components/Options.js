@@ -5,7 +5,7 @@ export default function Options(props) {
     return (
         <>
         {   
-            props.options.map((option, i) => (
+            props.quizData.options.map((option, i) => (
                 <div 
                     onClick={() => {
                         props.handler(i)

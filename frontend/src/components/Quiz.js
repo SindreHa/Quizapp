@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Question from './Question'
-import { quizData } from '../data'
+import { quizDataset } from '../data'
 import Options from './Options'
 import ProgressIndicator from './ProgressIndicator'
 import '../css/quiz.css'
@@ -10,43 +10,29 @@ export default class Quiz extends Component {
     constructor() {
         super()
         this.state = {
-            currentQuestionIndex: 0,
-            options: [],
+            questionId: null,
             myAnswer: null,
+            currentQuestionIndex: 0,
             answers: [],
-            disableButton: true
+            disableButton: true,
+            quizDataset: []
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.loadQuizData()
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        const {currentQuestionIndex} = this.state;
-        /**
-         * Sjekker at nåværende index ikke lik 
-         * forrige index for å unngå infinite loop
-         */
-        if(currentQuestionIndex !== prevState.currentQuestionIndex && currentQuestionIndex < quizData.length) {
-            this.loadQuizData()
-        }
-    }
-
     loadQuizData = () => {
-        const {currentQuestionIndex} = this.state;
-
         this.setState({
-            questionId: quizData[currentQuestionIndex].id,
-            question: quizData[currentQuestionIndex].question,
-            options: quizData[currentQuestionIndex].options
+            quizDataset: quizDataset
          });
     }
 
     logAnswer = () => {
         const answer = 
             {
-                question: this.state.questionId,
+                question: this.state.currentQuestionIndex,
                 answer: this.state.myAnswer
             }
 
@@ -59,7 +45,7 @@ export default class Quiz extends Component {
         this.logAnswer()
         this.setState({myAnswer: null, disableButton: true})
 
-        if (this.state.currentQuestionIndex === quizData.length-1) {
+        if (this.state.currentQuestionIndex === this.state.quizDataset.length-1) {
             this.props.setDone(true)
         }
 
@@ -67,37 +53,40 @@ export default class Quiz extends Component {
             currentQuestionIndex: this.state.currentQuestionIndex+1
         });
     }
-    
+
     selectionHandler = answer => {
-        this.setState({ myAnswer: answer, disableButton: false });
+        this.setState({ 
+            myAnswer: answer, 
+            disableButton: false,
+        });
     }
 
     render() {
 
         const {
-            question, 
-            options, 
             currentQuestionIndex, 
-            myAnswer, 
+            myAnswer,
+            quizDataset,
             disableButton} 
         = this.state;
 
         return (
             <div ref={this.props.ref} className="quiz-container">
                 <Question 
-                    question={question}/>
+                    question={quizDataset[currentQuestionIndex].question}/>
                 <ProgressIndicator 
-                    quizData={quizData} 
+                    quizData={quizDataset} 
                     currentQuestionIndex={currentQuestionIndex}/>
                 <Options 
-                    options={options} 
-                    handler={this.selectionHandler} 
-                    myAnswer={myAnswer}/>
+                    quizData={quizDataset[currentQuestionIndex]}
+                    myAnswer={myAnswer}
+                    currentQuestionIndex={currentQuestionIndex}
+                    handler={this.selectionHandler}/>
                 <button 
                     disabled={disableButton}
                     onClick={() => this.nextQuestionHandler()}>
                     {
-                        currentQuestionIndex < quizData.length-1 
+                        currentQuestionIndex < quizDataset.length-1 
                             ? "Neste spørsmål" 
                             : "Se resultat"
                     }
