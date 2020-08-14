@@ -1,12 +1,14 @@
 
 .progress-container {
-    width: 20%;
+    width: 80%;
     display: flex;
-    justify-content: space-between;
-    margin: 0 auto 30px;
+    justify-content: center;
+    margin: -15px auto 30px;
+    flex-wrap: wrap;
   }
   
   .progress-container div{
+    margin: 15px 15px 0;
     width: 10px;
     height: 10px;
     border-radius: 50%;
