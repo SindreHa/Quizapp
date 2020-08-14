@@ -3,6 +3,7 @@ import Question from './Question'
 import { quizData } from '../data'
 import Options from './Options'
 import ProgressIndicator from './ProgressIndicator'
+import '../css/quiz.css'
 
 export default class Quiz extends Component {
 

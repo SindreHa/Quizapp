@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/progressIndicator.css'
 
 export default function ProgressIndicator(props) {
     return (
