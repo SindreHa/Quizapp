@@ -32,10 +32,15 @@ export default function App() {
     <div className="App">
       <h1 id="header">Quiz app</h1>
       <SlideIn in={!isDone} delay={0}>
-        <Quiz isDone={isDone} setDone={setDone}/>
+        <Quiz 
+          isDone={isDone} 
+          setDone={setDone}/>
       </SlideIn>
       <SlideIn in={isDone} delay={0}>
-        <Results setDone={setDone} result={"4 riktige"}/>
+        <Results 
+          setDone={setDone} 
+          numQuestions={4} 
+          result={Math.floor(Math.random() * 5)}/>
       </SlideIn>
     </div>
   );
