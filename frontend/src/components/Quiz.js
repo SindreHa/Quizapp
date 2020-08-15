@@ -4,6 +4,7 @@ import { quizDataset } from '../data'
 import Options from './Options'
 import ProgressIndicator from './ProgressIndicator'
 import '../css/quiz.css'
+import Loader from 'react-loader-spinner'
 
 export default class Quiz extends Component {
 
@@ -16,7 +17,7 @@ export default class Quiz extends Component {
             answers: [],
             disableButton: true,
             quizDataset: [],
-            loaded: false
+            loading: true
         }
     }
 
@@ -34,12 +35,12 @@ export default class Quiz extends Component {
             (result) => {
                 this.setState({
                     quizDataset: result,
-                    loaded: true
+                    loading: false
                 });
             },
             (error) => {
                 this.setState({
-                  isLoaded: false
+                  loading: true
                 });
                 console.log(error)
               }
@@ -100,10 +101,10 @@ export default class Quiz extends Component {
             myAnswer,
             quizDataset,
             disableButton,
-            loaded} 
+            loading} 
         = this.state;
 
-        if (loaded) {
+        if (!loading) {
             return (
             <div className="quiz-container">
                 <Question 
@@ -129,7 +130,8 @@ export default class Quiz extends Component {
             )
         } else {
             return (
-                <div className="quiz-container">
+                <div className="quiz-container" style={{padding: "100px 0"}}>
+                    <Loader type="Oval" color="#2a9d8f" loading={loading}/>
                 </div>
             )
         }

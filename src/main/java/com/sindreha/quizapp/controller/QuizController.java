@@ -14,7 +14,7 @@ public class QuizController {
     private QuizRepository repository;
 
     @GetMapping("/quizDataset")
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     public Iterable <Quiz> getQuizDataset() {
         return repository.findAll();
     }
