@@ -9,29 +9,29 @@ public class Game {
 
     @Id @GeneratedValue
     private int id;
-    private String question_id;
-    private String answer;
+    private int question_id;
+    private int answer;
 
     Game() {}
 
-    public Game(String question_id, String answer) {
+    public Game(int question_id, int answer) {
         this.question_id = question_id;
         this.answer = answer;
     }
 
-    public String getQuestion_id() {
+    public int getQuestion_id() {
         return question_id;
     }
 
-    public void setQuestion_id(String question_id) {
+    public void setQuestion_id(int question_id) {
         this.question_id = question_id;
     }
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(int answer) {
         this.answer = answer;
     }
 
