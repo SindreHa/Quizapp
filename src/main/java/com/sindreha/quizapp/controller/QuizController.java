@@ -1,6 +1,7 @@
 package com.sindreha.quizapp.controller;
 
-import com.sindreha.quizapp.domain.Quiz;
+import com.sindreha.quizapp.domain.Game;
+import com.sindreha.quizapp.domain.Question;
 import com.sindreha.quizapp.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
