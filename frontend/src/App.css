@@ -1,12 +1,12 @@
 :root {
-  --background: #264653;
+  --background: #296177;
   --backgroundLight: #fff;
   --backgroundDark: #494949;
   --accent: #2a9d8f;
   --accentSecondary: #e76f51;
 }
 
-body {
+body, html {
   background: var(--background);
 }
 
