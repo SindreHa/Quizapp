@@ -5,18 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Quiz {
+public class Question {
 
     @Id @GeneratedValue
     private int id;
-    private String questions;
+    private String question;
     private String options;
     private int answer;
 
-    public Quiz() {}
+    public Question() {}
 
-    public Quiz(String questions, String options, int answer) {
-        this.questions = questions;
+    public Question(String question, String options, int answer) {
+        this.question = question;
         this.options = options;
         this.answer = answer;
     }
@@ -29,12 +29,12 @@ public class Quiz {
         this.id = id;
     }
 
-    public String getQuestions() {
-        return questions;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setQuestions(String questions) {
-        this.questions = questions;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     public String getOptions() {
@@ -57,7 +57,7 @@ public class Quiz {
     public String toString() {
         return "Quiz{" +
                 "id=" + id +
-                ", questions='" + questions + '\'' +
+                ", questions='" + question + '\'' +
                 ", options='" + options + '\'' +
                 ", answer=" + answer +
                 '}';
