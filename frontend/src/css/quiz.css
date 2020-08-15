@@ -29,17 +29,10 @@
   border-radius: 5px;
   border: 2px solid var(--accentSecondary);
   background-color: var(--backgroundLight);
-  transition: 
-    background-color .15s ease-out, 
-    color .15s ease-out,
-    box-shadow .1s ease-out;
+  transition: box-shadow .1s ease-out, background-color .15s ease-out, color .15s ease-out;
 }
 
 .quiz-container .option:hover {
-  transition: 
-    background-color .0s, 
-    color .0s,
-    box-shadow .1s ease-out;
   cursor: pointer;
   box-shadow: inset 0 0 0px 3px var(--accentSecondary);
 }

@@ -15,18 +15,35 @@ export default class Quiz extends Component {
             currentQuestionIndex: 0,
             answers: [],
             disableButton: true,
-            quizDataset: []
+            quizDataset: [],
+            loaded: false
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.loadQuizData()
     }
 
+    /**
+     * Hent datasett for quiz
+     */
     loadQuizData = () => {
-        this.setState({
-            quizDataset: quizDataset
-         });
+        fetch("http://localhost:8080/quizDataset")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    quizDataset: result,
+                    loaded: true
+                });
+            },
+            (error) => {
+                this.setState({
+                  isLoaded: false
+                });
+                console.log(error)
+              }
+        )
     }
 
     logAnswer = () => {
@@ -42,18 +59,33 @@ export default class Quiz extends Component {
     }
 
     nextQuestionHandler = () => {
+        /**
+         * Først logg svar med spørsmålID,
+         * Sett myAnswer til null og gjør knapp disabled
+         */
         this.logAnswer()
         this.setState({myAnswer: null, disableButton: true})
 
+        /**
+         * Hvis tomt for spørsmål, avslutt og vis resultat
+         */
         if (this.state.currentQuestionIndex === this.state.quizDataset.length-1) {
             this.props.setDone(true)
         }
 
+        /**
+         * Øk index for array
+         */
         this.setState({
             currentQuestionIndex: this.state.currentQuestionIndex+1
         });
     }
 
+    /**
+     * Setter nåværende selektert svar 
+     * og gjør at man kan trykke på neste spm. knapp
+     * @param {Int} answer valgt svar til spørsmål
+     */
     selectionHandler = answer => {
         this.setState({ 
             myAnswer: answer, 
@@ -67,11 +99,13 @@ export default class Quiz extends Component {
             currentQuestionIndex, 
             myAnswer,
             quizDataset,
-            disableButton} 
+            disableButton,
+            loaded} 
         = this.state;
 
-        return (
-            <div ref={this.props.ref} className="quiz-container">
+        if (loaded) {
+            return (
+            <div className="quiz-container">
                 <Question 
                     question={quizDataset[currentQuestionIndex].question}/>
                 <ProgressIndicator 
@@ -92,6 +126,13 @@ export default class Quiz extends Component {
                     }
                 </button>
             </div>
-        )
+            )
+        } else {
+            return (
+                <div className="quiz-container">
+                </div>
+            )
+        }
+        
     }
 }

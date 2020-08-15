@@ -2,10 +2,13 @@ import React from 'react'
 
 export default function Options(props) {
 
+    const optionsArray = props.quizData.options.split(", ")
+    console.log(optionsArray)
+
     return (
         <>
         {   
-            props.quizData.options.map((option, i) => (
+            optionsArray.map((option, i) => (
                 <div 
                     onClick={() => {
                         props.handler(i)
