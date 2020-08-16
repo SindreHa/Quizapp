@@ -4,6 +4,8 @@
   border-radius: 10px;
   box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.4);
   margin-bottom: 50px;
+  position: absolute;
+  top: 158px;
 }
 
 @media (max-width: 800px) {
@@ -45,31 +47,4 @@
 .quiz-container .option.selected{
   background-color: var(--accentSecondary);
   color: white
-}
-
-.quiz-container button {
-  font-size: 12pt;
-  padding: 10px 25px;
-  border: none;
-  color: white;
-  background-color: var(--accent);
-  border-radius: 5px;
-  margin: 20px 0 30px;
-  transition: filter .15s ease-out, opacity .15s ease-out;
-}
-
-.quiz-container button:disabled {
-  opacity: .5;
-}
-
-.quiz-container button:disabled:hover {
-  transition: none;
-  cursor: not-allowed;
-  filter: initial;
-}
-
-.quiz-container button:hover {
-  transition: none;
-  cursor: pointer;
-  filter: brightness(1.2);
 }

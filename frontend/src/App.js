@@ -4,19 +4,19 @@ import './App.css';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 
+  
+const SlideIn = ({in: inProp, ...props}) => (
+  <CSSTransition
+      in={inProp}
+      timeout={{ appear: 0, enter: 550, exit: 550 }}
+      classNames='slideIn'
+      appear
+      unmountOnExit
+      {...props} />
+);
 
 export default function App() {
 
-  const SlideIn = ({in: inProp, children, delay}) => (
-    <CSSTransition
-        unmountOnExit
-        in={inProp}
-        timeout={delay}
-        classNames='slideIn'
-        appear >
-            {children}
-    </CSSTransition>
-  );
 
   const fetchResults = (data) => {
     console.log(JSON.stringify(data))
@@ -37,20 +37,20 @@ export default function App() {
       });
   }
   
-  const [isDone, setDone] = useState(false)
+  const [gameDone, setDone] = useState(false)
   const [result, setResult] = useState(null)
 
 
     return (
       <div className="App">
         <h1 id="header">Quiz app</h1>
-        <SlideIn in={!isDone} delay={0}>
+        <SlideIn in={!gameDone}>
           <Quiz 
-            isDone={isDone} 
+            gameDone={gameDone} 
             setDone={setDone}
             fetchResults={fetchResults}/>
         </SlideIn>
-        <SlideIn in={isDone} delay={0}>
+        <SlideIn in={gameDone}>
           <Results 
             setDone={setDone} 
             numQuestions={4} 

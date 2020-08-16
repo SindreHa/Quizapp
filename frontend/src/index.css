@@ -9,6 +9,7 @@ body {
 }
 .slideIn-enter {
   opacity: 0;
+  transform: translatey(100px)
 }
 .slideIn-enter-done {
   opacity: 1;
@@ -20,10 +21,6 @@ body {
 }
 .slideIn-exit-active {
 	opacity: 0;
-	transition: opacity 500ms;
-}
-@keyframes slideInAnim {
-  0% {transform: translatey(500px)}
-  80% {transform: translatey(-10px)}
-  100% {transform: translatey(0px)}
+  transform: translatey(100px);
+	transition: opacity .2s, transform .3s;
 }
