@@ -37,7 +37,7 @@ $ npm start
 ```
 3. React blir så hostet på url'en http://localhost:3000/
 
-##### NB! Dette starter en development server, ønsker du å kjøre en build versjon kan du kjøre følgende kommandoer:
+##### NB! Dette starter en development server, ønsker du å kjøre en production versjon kan du kjøre følgende kommandoer:
 ```
 $ npm build
 $ npm install -g serve
