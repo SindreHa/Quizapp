@@ -50,7 +50,7 @@ button:disabled {
 button:disabled:hover {
   transition: none;
   cursor: not-allowed;
-  filter: initial;
+  background-color: var(--accent);
 }
 
 button:hover {

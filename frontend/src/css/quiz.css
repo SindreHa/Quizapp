@@ -18,7 +18,7 @@
   font-family: 'Bebas Neue', cursive;
   font-weight: normal;
   font-size: 30pt;
-  margin: 30px 10px 20px;
+  margin: 30px 25px 20px;
 }
 
 .quiz-container .option {
@@ -32,6 +32,12 @@
   border: 2px solid var(--accentSecondary);
   background-color: var(--backgroundLight);
   transition: box-shadow .1s ease-out, background-color .15s ease-out, color .15s ease-out;
+}
+
+@media (max-width: 800px) {
+  .quiz-container .option {
+    width: 80%;
+  }
 }
 
 .quiz-container .option:hover {
