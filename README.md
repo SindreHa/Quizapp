@@ -1,5 +1,5 @@
 # Quiz App · [![npm version](https://badge.fury.io/js/react.svg)](//npmjs.com/package/react) [![Version](https://img.shields.io/badge/Version-0.1.0-Green.svg)](https://shields.io/) 
-Enkel multiple-choice quiz app bygget med Java Spring backend og React frontend.
+Enkel quiz app bygget med Java Spring backend og React frontend.
 
 ## Struktur
 Mappen `src/` inneholder Java backend. `frontend/` inneholder React applikasjonen
