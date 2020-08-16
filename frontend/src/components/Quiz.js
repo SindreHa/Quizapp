@@ -48,19 +48,21 @@ export default class Quiz extends Component {
     }
 
     logAnswer = () => {
-        console.log("Log")
-        console.log("Index " + this.state.currentQuestionIndex)
         const answer = 
             {
-                question_id: this.state.currentQuestionIndex,
+                question_id: this.state.currentQuestionIndex+1,
                 answer: this.state.myAnswer
             }
 
         this.setState(prevState => ({
             answers: [...prevState.answers, answer]
         }), () => {
-            console.log("Log setState ferdig, index: " + this.state.currentQuestionIndex)
+            if (this.state.answers.length === this.state.quizDataset.length) {
+                this.props.fetchResults(this.state.answers)
+                this.props.setDone(true)
+        }
         })
+
     }
 
     nextQuestionHandler = () => {
@@ -72,29 +74,13 @@ export default class Quiz extends Component {
         this.setState({myAnswer: null, disableButton: true})
 
         /**
-         * Hvis tomt for spørsmål, avslutt og vis resultat
+         * Hvis neste spørsmål eksisterer
          */
-        if (!this.state.quizDataset[this.state.currentQuestionIndex+1]) {
-            /**
-             * Øk index for array
-             */
+        if (this.state.quizDataset[this.state.currentQuestionIndex+1]) {
             this.setState({
                 currentQuestionIndex: this.state.currentQuestionIndex+1
-            }, () => {
-                console.log("Setstate")
-                this.logAnswer()
-                this.props.setDone(true)
-                this.props.fetchResults(this.state.answers)
-            } );
-            console.log("Ferdig")
-        }
-
-        /**
-         * Øk index for array
-         */
-        this.setState({
-            currentQuestionIndex: this.state.currentQuestionIndex+1
-        });
+            });
+        } 
     }
 
     /**
@@ -119,7 +105,7 @@ export default class Quiz extends Component {
             loading} 
         = this.state;
 
-        if (!loading && quizDataset[currentQuestionIndex]) {
+        if (!loading) {
             return (
             <div className="quiz-container">
                 <Question 
