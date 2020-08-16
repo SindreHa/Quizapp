@@ -3,6 +3,7 @@
   --backgroundLight: #fff;
   --backgroundDark: #494949;
   --accent: #2a9d8f;
+  --accentHover: #33beae;
   --accentSecondary: #e76f51;
 }
 
@@ -27,4 +28,41 @@ body, html {
   color: white;
   font-size: 45pt;
   user-select: none;
+}
+
+button {
+  font-size: 12pt;
+  padding: 10px 25px;
+  border: none;
+  color: white;
+  background-color: var(--accent);
+  border-radius: 5px;
+  margin: 20px 0 30px;
+  transition-property: background-color, opacity, transform;
+  transition-timing-function: ease-out;
+  transition-duration: .15s;
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+button:disabled:hover {
+  transition: none;
+  cursor: not-allowed;
+  filter: initial;
+}
+
+button:hover {
+  transition: none;
+  cursor: pointer;
+  background-color: var(--accentHover);
+}
+
+button:active {
+  transform: scale(.98);
+}
+
+button:active, button:focus {
+  outline: none;
 }
