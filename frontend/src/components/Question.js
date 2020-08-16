@@ -1,12 +1,7 @@
-import React from 'react'
+import React from "react";
 
 export default function Question(props) {
+  const { question } = props;
 
-    const {question} = props;
-
-    return (
-        <h1>
-            {question}
-        </h1>
-    )
+  return <h1>{question}</h1>;
 }
