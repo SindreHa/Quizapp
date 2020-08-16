@@ -47,6 +47,7 @@ public class Question {
         this.options = options;
     }
 
+    // Ikke send fasit svar til klient ved GET request
     @JsonIgnore
     public int getAnswer() {
         return answer;

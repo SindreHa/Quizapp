@@ -12,30 +12,35 @@ import java.util.List;
 @RestController
 public class QuizController {
 
+    // Database repository
     @Autowired
-    private QuizRepository qRepository;
+    private QuizRepository repository;
 
+    // GET handler
     @GetMapping("/quizDataset")
     @CrossOrigin
     public Iterable <Question> getQuizDataset() {
-        return qRepository.findAll();
+        return repository.findAll();
     }
 
+    // POST handler
     @RequestMapping(value = "/results", method = RequestMethod.POST)
     @CrossOrigin
     public int getScore(@RequestBody List<Game> gameList) {
 
-        System.out.println(gameList.size());
-
+        // Lag liste med brukersvar hentet fra POST request
         ArrayList userAnswers = new ArrayList();
         gameList.forEach( (element) -> {
+            // Hent ut svar
             userAnswers.add(element.getAnswer());
             //System.out.println( element.getAnswer());
         });
 
+        // Lag liste med fasit på svar hentet fra database
         ArrayList questionAnswers = new ArrayList();
-        Iterable<Question> list = qRepository.findAll();
+        Iterable<Question> list = repository.findAll();
         list.forEach( (element) -> {
+            // Hent ut fasit svar
             questionAnswers.add(element.getAnswer());
             //System.out.println( element.getAnswer());
         });
@@ -43,6 +48,7 @@ public class QuizController {
         int score = 0;
 
         for (int i=0; i < userAnswers.size(); i++) {
+            // Sammenlign brukersvar med fasit og øk teller pr riktig
             if ((int)userAnswers.get(i) == (int)questionAnswers.get(i)) {
                 score++;
             }
