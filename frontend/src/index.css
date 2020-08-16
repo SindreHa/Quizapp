@@ -5,22 +5,22 @@ body {
 /* Component transitions */
 .slideIn-appear {
   opacity: 0;
-  transform: translatey(100px)
+  transform: translatey(100px);
 }
 .slideIn-enter {
   opacity: 0;
-  transform: translatey(100px)
+  transform: translatey(100px);
 }
 .slideIn-enter-done {
   opacity: 1;
   transform: translatey(0px);
-	transition: opacity .5s, transform .5s cubic-bezier(.40,.90,.40,1.15);
+  transition: opacity 0.5s, transform 0.5s cubic-bezier(0.4, 0.9, 0.4, 1.15);
 }
 .slideIn-exit {
-	opacity: 1;
+  opacity: 1;
 }
 .slideIn-exit-active {
-	opacity: 0;
+  opacity: 0;
   transform: translatey(100px);
-	transition: opacity .2s, transform .3s;
+  transition: opacity 0.2s, transform 0.3s;
 }

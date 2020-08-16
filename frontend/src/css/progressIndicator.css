@@ -1,22 +1,21 @@
-
 .progress-container {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    margin: -15px auto 30px;
-    flex-wrap: wrap;
-  }
-  
-  .progress-container div{
-    margin: 15px 15px 0;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #b3b3b3;
-    transition: transform .15s ease-out, background-color .15s ease-out;
-  }
-  
-  #currentPosition {
-    background-color: var(--accent);
-    transform: scale(1.5);
-  }
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: -15px auto 30px;
+  flex-wrap: wrap;
+}
+
+.progress-container div {
+  margin: 15px 15px 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #b3b3b3;
+  transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+}
+
+#currentPosition {
+  background-color: var(--accent);
+  transform: scale(1.5);
+}
