@@ -7,8 +7,8 @@ Mappen `src/` inneholder Java backend. `frontend/` inneholder React applikasjone
 ## Enviroment
 For å kunne kjøre Quiz App trenger du følgende:
 
-* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) - Backend
-* [Node.js](https://github.com/nodejs/node) - Frontend
+* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) - Backend språk
+* [Node.js](https://github.com/nodejs/node) - Frontend runtime
 * [Maven](https://maven.apache.org/) - Dependency Management
 
 ## Hvordan kjøre
