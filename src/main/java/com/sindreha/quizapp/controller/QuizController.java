@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class QuizController {
@@ -27,6 +25,7 @@ public class QuizController {
     @CrossOrigin
     public int getScore(@RequestBody List<Game> gameList) {
 
+        System.out.println(gameList.size());
 
         ArrayList userAnswers = new ArrayList();
         gameList.forEach( (element) -> {

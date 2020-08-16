@@ -3,7 +3,6 @@ import React from 'react'
 export default function Options(props) {
 
     const optionsArray = props.quizData.options.split(", ")
-    console.log(optionsArray)
 
     return (
         <>

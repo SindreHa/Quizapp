@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Question from './Question'
-import { quizDataset } from '../data'
 import Options from './Options'
 import ProgressIndicator from './ProgressIndicator'
 import '../css/quiz.css'
@@ -11,7 +10,7 @@ export default class Quiz extends Component {
     constructor() {
         super()
         this.state = {
-            questionId: null,
+            questionIds: null,
             myAnswer: null,
             currentQuestionIndex: 0,
             answers: [],
@@ -20,6 +19,7 @@ export default class Quiz extends Component {
             loading: true
         }
     }
+    
 
     componentDidMount() {
         this.loadQuizData()
@@ -40,23 +40,27 @@ export default class Quiz extends Component {
             },
             (error) => {
                 this.setState({
-                  loading: true
+                loading: true
                 });
                 console.log(error)
-              }
+            }
         )
     }
 
     logAnswer = () => {
+        console.log("Log")
+        console.log("Index " + this.state.currentQuestionIndex)
         const answer = 
             {
-                question: this.state.currentQuestionIndex,
+                question_id: this.state.currentQuestionIndex,
                 answer: this.state.myAnswer
             }
 
         this.setState(prevState => ({
             answers: [...prevState.answers, answer]
-        }))
+        }), () => {
+            console.log("Log setState ferdig, index: " + this.state.currentQuestionIndex)
+        })
     }
 
     nextQuestionHandler = () => {
@@ -70,8 +74,19 @@ export default class Quiz extends Component {
         /**
          * Hvis tomt for spørsmål, avslutt og vis resultat
          */
-        if (this.state.currentQuestionIndex === this.state.quizDataset.length-1) {
-            this.props.setDone(true)
+        if (!this.state.quizDataset[this.state.currentQuestionIndex+1]) {
+            /**
+             * Øk index for array
+             */
+            this.setState({
+                currentQuestionIndex: this.state.currentQuestionIndex+1
+            }, () => {
+                console.log("Setstate")
+                this.logAnswer()
+                this.props.setDone(true)
+                this.props.fetchResults(this.state.answers)
+            } );
+            console.log("Ferdig")
         }
 
         /**
@@ -99,12 +114,12 @@ export default class Quiz extends Component {
         const {
             currentQuestionIndex, 
             myAnswer,
-            quizDataset,
             disableButton,
+            quizDataset,
             loading} 
         = this.state;
 
-        if (!loading) {
+        if (!loading && quizDataset[currentQuestionIndex]) {
             return (
             <div className="quiz-container">
                 <Question 
