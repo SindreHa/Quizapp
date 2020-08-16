@@ -21,15 +21,15 @@ public class QuizappApplication {
 	CommandLineRunner runner(QuizRepository repository) {
 
 		// Lag liste med spørmsål og fyll opp med data
-		List<Question> QuestionSet = new ArrayList<Question>();
-		QuestionSet.add(new Question("Hva er det høyeste fjellet i Norge?", "Himalaya, Himmelbjerget, Galdhøpiggen, Høyfjellet", 2));
-		QuestionSet.add(new Question("Hvem er CEO for Tesla Motors?", "Bill Gates, Tim Cook, Elon Musk", 2));
-		QuestionSet.add(new Question("Hvem malte Mona Lisa?", "Claude Monet, Leonardo da Vinci , Vincent Van Gogh, Pablo Picasso", 1));
-		QuestionSet.add(new Question("Hva er verdens lengste elv?", "Nilen, Glomma, Amazonas-Apurímac, Mississippi–Missouri", 0));
+		List<Question> questionSet = new ArrayList<Question>();
+		questionSet.add(new Question("Hva er det høyeste fjellet i Norge?", "Himalaya, Himmelbjerget, Galdhøpiggen, Høyfjellet", 2));
+		questionSet.add(new Question("Hvem er CEO for Tesla Motors?", "Bill Gates, Tim Cook, Elon Musk", 2));
+		questionSet.add(new Question("Hvem malte Mona Lisa?", "Claude Monet, Leonardo da Vinci , Vincent Van Gogh, Pablo Picasso", 1));
+		questionSet.add(new Question("Hva er verdens lengste elv?", "Nilen, Glomma, Amazonas-Apurímac, Mississippi–Missouri", 0));
 
 		return args -> {
 			// Lagre spørsmålsett til database på oppstart
-			repository.saveAll( QuestionSet );
+			repository.saveAll( questionSet );
 		};
 	}
 
