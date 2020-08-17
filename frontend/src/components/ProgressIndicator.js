@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/progressIndicator.css";
+import PropTypes from "prop-types";
 
 export default function ProgressIndicator(props) {
   return (
@@ -13,3 +14,9 @@ export default function ProgressIndicator(props) {
     </div>
   );
 }
+
+// Typechecking proptypes
+ProgressIndicator.propTypes = {
+  quizData: PropTypes.array.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired,
+};

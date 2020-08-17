@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Options(props) {
   // Split string til array
@@ -21,3 +22,11 @@ export default function Options(props) {
     </>
   );
 }
+
+// Typechecking proptypes
+Options.propTypes = {
+  quizData: PropTypes.object.isRequired,
+  myAnswer: PropTypes.number.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired,
+  handler: PropTypes.func.isRequired,
+};

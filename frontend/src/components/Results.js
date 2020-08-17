@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/results.css";
 import Loader from "react-loader-spinner";
+import PropTypes from "prop-types";
 
 export default function Results(props) {
   const { result, numQuestions } = props;
@@ -21,4 +22,10 @@ export default function Results(props) {
       </div>
     );
   }
+}
+
+Results.propTypes = {
+  result: PropTypes.number.isRequired,
+  numQuestions: PropTypes.number.isRequired,
+  setDone: PropTypes.func.isRequired
 }

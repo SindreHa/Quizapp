@@ -4,13 +4,14 @@ import Options from "./Options";
 import ProgressIndicator from "./ProgressIndicator";
 import "../css/quiz.css";
 import Loader from "react-loader-spinner";
+import PropTypes from "prop-types";
 
 export default class Quiz extends Component {
   constructor() {
     super();
     this.state = {
       questionIds: null,
-      myAnswer: null,
+      myAnswer: -1,
       currentQuestionIndex: 0,
       answers: [],
       disableButton: true,
@@ -74,7 +75,7 @@ export default class Quiz extends Component {
      * Sett myAnswer til null og gjør knapp disabled
      */
     this.logAnswer();
-    this.setState({ myAnswer: null, disableButton: true });
+    this.setState({ myAnswer: -1, disableButton: true });
 
     /**
      * Hvis neste spørsmål eksisterer
@@ -140,3 +141,10 @@ export default class Quiz extends Component {
     }
   }
 }
+
+// Typechecking proptypes
+Quiz.propTypes = {
+  gameDone: PropTypes.bool.isRequired,
+  setDone: PropTypes.func.isRequired,
+  fetchResults: PropTypes.func.isRequired,
+};

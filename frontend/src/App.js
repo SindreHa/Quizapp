@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
 import Quiz from "./components/Quiz";
@@ -17,7 +17,7 @@ const SlideIn = ({ in: inProp, ...props }) => (
 
 export default function App() {
   const fetchResults = (data) => {
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
     fetch("http://localhost:8080/results", {
       method: "POST",
       headers: {
@@ -36,7 +36,7 @@ export default function App() {
   };
 
   const [gameDone, setDone] = useState(false);
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState(0);
 
   return (
     <div className="App">
