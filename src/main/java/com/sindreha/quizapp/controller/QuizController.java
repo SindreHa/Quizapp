@@ -29,7 +29,7 @@ public class QuizController {
     public int getScore(@RequestBody List<Game> gameList) {
 
         // Lag liste med brukersvar hentet fra POST request
-        ArrayList userAnswers = new ArrayList();
+        ArrayList<Integer> userAnswers = new ArrayList<>();
         gameList.forEach( (element) -> {
             // Hent ut svar
             userAnswers.add(element.getAnswer());
@@ -37,7 +37,7 @@ public class QuizController {
         });
 
         // Lag liste med fasit på svar hentet fra database
-        ArrayList questionAnswers = new ArrayList();
+        ArrayList<Integer> questionAnswers = new ArrayList<>();
         Iterable<Question> list = repository.findAll();
         list.forEach( (element) -> {
             // Hent ut fasit svar
