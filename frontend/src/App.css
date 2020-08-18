@@ -5,6 +5,8 @@
   --accent: #2a9d8f;
   --accentHover: #33beae;
   --accentSecondary: #e76f51;
+  --correct: #6ac45e;
+  --wrong: #d90429;
 }
 
 body,
@@ -16,12 +18,14 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
-.App {
+#root {
+  overflow: hidden;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 #header {

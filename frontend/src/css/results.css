@@ -29,3 +29,61 @@
   margin: 20px 10px 10px;
   font-size: 15pt;
 }
+.results-container button {
+  display: block;
+  margin: 20px auto;
+}
+
+.answers-wrapper {
+  width: 80%;
+  margin: 0 auto 10px;
+}
+
+.answers-wrapper .answer-container {
+  margin: 0 0 15px;
+  /* border: 2px solid var(--accentSecondary); */
+  border-radius: 8px;
+  padding: 10px 0 0;
+}
+
+.answer-container .question {
+  font-family: "Bebas Neue", cursive;
+  font-weight: normal;
+  font-size: 20pt;
+  margin: 0;
+}
+
+.answer-container p {
+  margin: 5px auto;
+  font-size: 12pt;
+}
+
+.answer-container .answer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid var(--correct);
+}
+
+.answer-container .userAnswer p:nth-of-type(1) {
+  margin-top: 15px;
+  font-size: 12pt;
+}
+
+.answer-container .userAnswer p:nth-last-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+  color: black;
+}
+
+.wrong-answer {
+  border: 2px solid var(--wrong) !important;
+}

@@ -28,7 +28,8 @@ export default function App() {
       .then((response) => response.json())
       .then((data) => {
         //console.log(data)
-        setResult(data);
+        setResult(data)
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -36,10 +37,11 @@ export default function App() {
   };
 
   const [gameDone, setDone] = useState(false);
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState({});
+  const [loading, setLoading] = useState(true)
 
   return (
-    <div className="App">
+    <>
       <h1 id="header">Quiz app</h1>
       <SlideIn in={!gameDone}>
         <Quiz
@@ -50,10 +52,10 @@ export default function App() {
       </SlideIn>
       <SlideIn in={gameDone}>
         <Results 
-          setDone={setDone} 
-          numQuestions={4} 
+          setDone={setDone}
+          loading={loading} 
           result={result} />
       </SlideIn>
-    </div>
+    </>
   );
 }

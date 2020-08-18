@@ -24,3 +24,20 @@ body {
   transform: translatey(100px);
   transition: opacity 0.2s, transform 0.3s;
 }
+.fadeIn-appear {
+  opacity: 0;
+}
+.fadeIn-enter {
+  opacity: 0;
+}
+.fadeIn-enter-done {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.fadeIn-exit {
+  opacity: 1;
+}
+.fadeIn-exit-active {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
