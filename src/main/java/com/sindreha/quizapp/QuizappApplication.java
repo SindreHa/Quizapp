@@ -1,7 +1,7 @@
 package com.sindreha.quizapp;
 
 import com.sindreha.quizapp.domain.Question;
-import com.sindreha.quizapp.repository.QuizRepository;
+import com.sindreha.quizapp.repository.QuestionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,14 +18,14 @@ public class QuizappApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(QuizRepository repository) {
+	CommandLineRunner runner(QuestionRepository repository) {
 
 		// Lag liste med spørmsål og fyll opp med data
-		List<Question> questionSet = new ArrayList<Question>();
-		questionSet.add(new Question("Hva er det høyeste fjellet i Norge?", "Himalaya, Himmelbjerget, Galdhøpiggen, Høyfjellet", 2));
-		questionSet.add(new Question("Hvem er CEO for Tesla Motors?", "Bill Gates, Tim Cook, Elon Musk", 2));
-		questionSet.add(new Question("Hvem malte Mona Lisa?", "Claude Monet, Leonardo da Vinci , Vincent Van Gogh, Pablo Picasso", 1));
-		questionSet.add(new Question("Hva er verdens lengste elv?", "Nilen, Glomma, Amazonas-Apurímac, Mississippi–Missouri", 0));
+		List<Question> questionSet = new ArrayList<>();
+		questionSet.add(new Question("Hva er det høyeste fjellet i Norge?", "Himalaya, Himmelbjerget, Galdhøpiggen, Høyfjellet", "Galdhøpiggen", 2));
+		questionSet.add(new Question("Hvem er CEO for Tesla Motors?", "Bill Gates, Tim Cook, Elon Musk", "Elon Musk", 2));
+		questionSet.add(new Question("Hvem malte Mona Lisa?", "Claude Monet, Leonardo da Vinci, Vincent Van Gogh, Pablo Picasso", "Leonardo da Vinci", 1));
+		questionSet.add(new Question("Hva er verdens lengste elv?", "Nilen, Glomma, Amazonas-Apurímac, Mississippi–Missouri", "Nilen", 0));
 
 		return args -> {
 			// Lagre spørsmålsett til database på oppstart

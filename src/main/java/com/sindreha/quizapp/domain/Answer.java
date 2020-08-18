@@ -1,36 +1,26 @@
 package com.sindreha.quizapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
-public class Question {
+public class Answer {
 
     @Id @GeneratedValue
     private int id;
     private String question;
-    private String options;
+    private int question_id;
     private String answer;
     private int answer_id;
 
-    public Question() {}
 
-    public Question(String question, String options, String answer , int answer_id) {
+    Answer() {}
+
+    public Answer(String question, int question_id, String answer, int answer_id) {
         this.question = question;
+        this.question_id = question_id;
         this.answer = answer;
-        this.options = options;
         this.answer_id = answer_id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getQuestion() {
@@ -41,16 +31,14 @@ public class Question {
         this.question = question;
     }
 
-    public String getOptions() {
-        return options;
+    public int getQuestion_id() {
+        return question_id;
     }
 
-    public void setOptions(String options) {
-        this.options = options;
+    public void setQuestion_id(int question_id) {
+        this.question_id = question_id;
     }
 
-    // Ikke send fasit svar til klient ved GET request
-    @JsonIgnore
     public String getAnswer() {
         return answer;
     }
@@ -59,8 +47,6 @@ public class Question {
         this.answer = answer;
     }
 
-    // Ikke send fasit svar til klient ved GET request
-    @JsonIgnore
     public int getAnswer_id() {
         return answer_id;
     }
@@ -71,10 +57,10 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
+        return "Game{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", options='" + options + '\'' +
+                ", question_id=" + question_id +
                 ", answer='" + answer + '\'' +
                 ", answer_id=" + answer_id +
                 '}';

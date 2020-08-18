@@ -3,44 +3,66 @@ package com.sindreha.quizapp.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Arrays;
 
 @Entity
 public class Game {
-
     @Id @GeneratedValue
     private int id;
-    private int question_id;
-    private int answer;
+    private String questions;
+    private String answers;
+    private String userAnswers;
+    private int score;
 
-    Game() {}
+    public Game() {}
 
-    public Game(int question_id, int answer) {
-        this.question_id = question_id;
-        this.answer = answer;
+    public Game(String questions, String answers, String userAnswers, int score) {
+        this.questions = questions;
+        this.answers = answers;
+        this.userAnswers = userAnswers;
+        this.score = score;
     }
 
-    public int getQuestion_id() {
-        return question_id;
+    public String getQuestions() {
+        return questions;
     }
 
-    public void setQuestion_id(int question_id) {
-        this.question_id = question_id;
+    public void setQuestions(String questions) {
+        this.questions = questions;
     }
 
-    public int getAnswer() {
-        return answer;
+    public String getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(int answer) {
-        this.answer = answer;
+    public void setAnswers(String answers) {
+        this.answers = answers;
+    }
+
+    public String getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(String userAnswers) {
+        this.userAnswers = userAnswers;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     @Override
     public String toString() {
         return "Game{" +
                 "id=" + id +
-                ", quiestionId=" + question_id +
-                ", answer=" + answer +
+                ", questions='" + questions + '\'' +
+                ", answers='" + answers + '\'' +
+                ", userAnswers='" + userAnswers + '\'' +
+                ", score=" + score +
                 '}';
     }
 }

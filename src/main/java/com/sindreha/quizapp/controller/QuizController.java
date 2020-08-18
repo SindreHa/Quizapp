@@ -1,8 +1,10 @@
 package com.sindreha.quizapp.controller;
 
+import com.sindreha.quizapp.domain.Answer;
 import com.sindreha.quizapp.domain.Game;
 import com.sindreha.quizapp.domain.Question;
-import com.sindreha.quizapp.repository.QuizRepository;
+import com.sindreha.quizapp.repository.GameRepository;
+import com.sindreha.quizapp.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,48 +14,63 @@ import java.util.List;
 @RestController
 public class QuizController {
 
-    // Database repository
+    // Question repository
     @Autowired
-    private QuizRepository repository;
+    private QuestionRepository questionRepository;
+    // Game repository
+    @Autowired
+    private GameRepository gameRepository;
 
     // GET handler
     @GetMapping("/quizDataset")
     @CrossOrigin
     public Iterable <Question> getQuizDataset() {
-        return repository.findAll();
+        return questionRepository.findAll();
     }
 
     // POST handler
     @RequestMapping(value = "/results", method = RequestMethod.POST)
     @CrossOrigin
-    public int getScore(@RequestBody List<Game> gameList) {
+    public Game getScore(@RequestBody List<Answer> answerList) {
+
+        Game game = new Game();
 
         // Lag liste med brukersvar hentet fra POST request
-        ArrayList<Integer> userAnswers = new ArrayList<>();
-        gameList.forEach( (element) -> {
+        ArrayList<String> userAnswers = new ArrayList<>();
+        ArrayList<Integer> userAnswersIds = new ArrayList<>();
+        answerList.forEach( (element) -> {
             // Hent ut svar
             userAnswers.add(element.getAnswer());
-            //System.out.println( element.getAnswer());
+            userAnswersIds.add(element.getAnswer_id());
         });
+        game.setUserAnswers(userAnswers.toString());
 
         // Lag liste med fasit på svar hentet fra database
-        ArrayList<Integer> questionAnswers = new ArrayList<>();
-        Iterable<Question> list = repository.findAll();
+        ArrayList<String> questions = new ArrayList<>();
+        ArrayList<String> questionanswers = new ArrayList<>();
+        ArrayList<Integer> questionsIds = new ArrayList<>();
+        Iterable<Question> list = questionRepository.findAll();
         list.forEach( (element) -> {
             // Hent ut fasit svar
-            questionAnswers.add(element.getAnswer());
-            //System.out.println( element.getAnswer());
+            questions.add(element.getQuestion());
+            questionanswers.add(element.getAnswer());
+            questionsIds.add(element.getAnswer_id());
         });
+        game.setQuestions(questions.toString());
+        game.setAnswers(questionanswers.toString());
 
         int score = 0;
 
         for (int i=0; i < userAnswers.size(); i++) {
             // Sammenlign brukersvar med fasit og øk teller pr riktig
-            if ((int)userAnswers.get(i) == (int)questionAnswers.get(i)) {
+            if (userAnswersIds.get(i) == questionsIds.get(i)) {
                 score++;
             }
         }
 
-        return score;
+        game.setScore(score);
+
+        gameRepository.save(game);
+        return game;
     }
 }
