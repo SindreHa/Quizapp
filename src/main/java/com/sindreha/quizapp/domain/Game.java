@@ -3,7 +3,6 @@ package com.sindreha.quizapp.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Arrays;
 
 @Entity
 public class Game {
