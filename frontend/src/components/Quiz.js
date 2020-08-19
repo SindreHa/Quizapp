@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Question from "./Question";
 import Options from "./Options";
 import ProgressIndicator from "./ProgressIndicator";
@@ -18,6 +18,7 @@ export default class Quiz extends Component {
       quizDataset: [],
       loading: true,
     };
+    this.nodeRef = createRef(null);
   }
 
   componentDidMount() {
@@ -118,13 +119,13 @@ export default class Quiz extends Component {
 
     if (loading) {
       return (
-        <div className="quiz-container" style={{ padding: "100px 0" }}>
+        <div ref={this.nodeRef} className="quiz-container" style={{ padding: "100px 0" }}>
           <Loader type="Oval" color="#2a9d8f" loading={loading} />
         </div>
       );
     } else {
       return (
-        <div className="quiz-container">
+        <div ref={this.nodeRef} className="quiz-container">
           <Question question={quizDataset[currentQuestionIndex].question} />
           <ProgressIndicator
             quizData={quizDataset}

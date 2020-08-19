@@ -8,9 +8,10 @@ import Results from "./components/Results";
  * Komponent animasjon
  * @param {Boolean} in - boolean for om komponent skal animeres inn/ut
  */
-const SlideIn = ({ in: inProp, ...props }) => (
+const SlideIn = ({ in: inProp, nodeRef: nodeRef, ...props }) => (
   <CSSTransition
     in={inProp}
+    nodeRef={nodeRef}
     timeout={{ appear: 0, enter: 550, exit: 550 }}
     classNames="slideIn"
     appear
