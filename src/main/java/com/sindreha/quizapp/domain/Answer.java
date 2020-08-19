@@ -13,7 +13,6 @@ public class Answer {
     private String answer;
     private int answer_id;
 
-
     Answer() {}
 
     public Answer(String question, int question_id, String answer, int answer_id) {

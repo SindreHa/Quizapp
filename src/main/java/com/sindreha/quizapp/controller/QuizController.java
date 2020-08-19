@@ -38,10 +38,10 @@ public class QuizController {
         // Lag liste med brukersvar hentet fra POST request
         ArrayList<String> userAnswers = new ArrayList<>();
         ArrayList<Integer> userAnswersIds = new ArrayList<>();
-        answerList.forEach( (element) -> {
+        answerList.forEach( (answer) -> {
             // Hent ut svar
-            userAnswers.add(element.getAnswer());
-            userAnswersIds.add(element.getAnswer_id());
+            userAnswers.add(answer.getAnswer());
+            userAnswersIds.add(answer.getAnswer_id());
         });
         game.setUserAnswers(userAnswers.toString());
 
@@ -50,11 +50,11 @@ public class QuizController {
         ArrayList<String> questionanswers = new ArrayList<>();
         ArrayList<Integer> questionsIds = new ArrayList<>();
         Iterable<Question> list = questionRepository.findAll();
-        list.forEach( (element) -> {
+        list.forEach( (question) -> {
             // Hent ut fasit svar
-            questions.add(element.getQuestion());
-            questionanswers.add(element.getAnswer());
-            questionsIds.add(element.getAnswer_id());
+            questions.add(question.getQuestion());
+            questionanswers.add(question.getAnswer());
+            questionsIds.add(question.getAnswer_id());
         });
         game.setQuestions(questions.toString());
         game.setAnswers(questionanswers.toString());
@@ -63,7 +63,7 @@ public class QuizController {
 
         for (int i=0; i < userAnswers.size(); i++) {
             // Sammenlign brukersvar med fasit og øk teller pr riktig
-            if (userAnswersIds.get(i) == questionsIds.get(i)) {
+            if (userAnswersIds.get(i).equals(questionsIds.get(i))) {
                 score++;
             }
         }
