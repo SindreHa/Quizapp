@@ -4,6 +4,10 @@ import "./App.css";
 import Quiz from "./components/Quiz";
 import Results from "./components/Results";
 
+/**
+ * Komponent animasjon
+ * @param {Boolean} in - boolean for om komponent skal animeres inn/ut
+ */
 const SlideIn = ({ in: inProp, ...props }) => (
   <CSSTransition
     in={inProp}
@@ -16,29 +20,34 @@ const SlideIn = ({ in: inProp, ...props }) => (
 );
 
 export default function App() {
-  const fetchResults = (data) => {
+  // State variabler med Set metoder
+  const [gameDone, setDone] = useState(false);
+  const [result, setResult] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  /**
+   * Hent resultat for runde
+   * @param {Object} answers - objekt med svar på spørsmål
+   */
+  const fetchResults = (answers) => {
     //console.log(JSON.stringify(data));
     fetch("http://localhost:8080/results", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(answers),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((result) => {
         //console.log(data)
-        setResult(data)
+        setResult(result);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
-
-  const [gameDone, setDone] = useState(false);
-  const [result, setResult] = useState({});
-  const [loading, setLoading] = useState(true)
 
   return (
     <>
@@ -51,10 +60,7 @@ export default function App() {
         />
       </SlideIn>
       <SlideIn in={gameDone}>
-        <Results 
-          setDone={setDone}
-          loading={loading} 
-          result={result} />
+        <Results setDone={setDone} loading={loading} result={result} />
       </SlideIn>
     </>
   );

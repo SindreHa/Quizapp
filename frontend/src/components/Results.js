@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import QuizAnswers from "./QuizAnswers";
 
 export default function Results(props) {
+
+  // State variabler med Set metoder
   const { result, loading } = props;
   const [ hidden, setHidden ] = useState(true)
 
@@ -33,6 +35,7 @@ export default function Results(props) {
   }
 }
 
+// Typechecking proptypes
 Results.propTypes = {
   result: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,

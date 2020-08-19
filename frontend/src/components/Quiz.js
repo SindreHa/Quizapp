@@ -48,13 +48,16 @@ export default class Quiz extends Component {
 
   logAnswer = () => {
     const { currentQuestionIndex, quizDataset, myAnswer } = this.state;
-    const options = quizDataset[currentQuestionIndex].options.split(", ")
+    const options = quizDataset[currentQuestionIndex].options.split(", ");
 
+    /**
+     * Opprett answer objekt med spørsmål og svar data
+     */
     const answer = {
       question: quizDataset[currentQuestionIndex].question,
       question_id: currentQuestionIndex + 1,
       answer: options[myAnswer],
-      answer_id: myAnswer
+      answer_id: myAnswer,
     };
 
     this.setState(
@@ -77,7 +80,7 @@ export default class Quiz extends Component {
   nextQuestionHandler = () => {
     /**
      * Først logg svar med spørsmålID,
-     * Sett myAnswer til null og gjør knapp disabled
+     * Sett myAnswer til -1 og gjør "Neste" knapp disabled
      */
     this.logAnswer();
     this.setState({ myAnswer: -1, disableButton: true });
