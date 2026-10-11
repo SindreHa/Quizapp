@@ -1,11 +1,11 @@
-import React, { useRef, createRef } from "react";
+import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
 /**
  * Komponent animasjon
  * @param {Boolean} in - boolean for om komponent skal animeres inn/ut
  */
-const FadeIn = ({ in: inProp, nodeRef: nodeRef, ...props }) => (
+const FadeIn = ({ in: inProp, nodeRef, ...props }) => (
   <CSSTransition
     in={inProp}
     nodeRef={nodeRef}
@@ -34,7 +34,7 @@ export default function QuizAnswers(props) {
   }
 
   return (
-    <FadeIn in={!props.hidden}>
+    <FadeIn in={!props.hidden} nodeRef={nodeRef}>
       <div ref={nodeRef}  className="answers-wrapper">
         {questions.map((question, i) => (
           <div key={i} className="answer-container">

@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../css/results.css";
-import Loader from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 import PropTypes from "prop-types";
 import QuizAnswers from "./QuizAnswers";
 
 export default function Results(props) {
 
   // State variabler med Set metoder
-  const { result, loading } = props;
+  const { result, loading, nodeRef } = props;
   const [ hidden, setHidden ] = useState(true)
 
   if (loading) {
     return (
-      <div className="results-container" style={{ padding: "100px 0" }}>
-        <Loader type="Oval" color="#2a9d8f" loading={loading} />
+      <div ref={nodeRef} className="results-container" style={{ padding: "100px 0" }}>
+        <Oval height={80} width={80} color="#2a9d8f" secondaryColor="#2a9d8f" wrapperStyle={{ justifyContent: "center" }} />
       </div>
     );
   } else {
     return (
-      <div className="results-container">
+      <div ref={nodeRef} className="results-container">
         <h1>Resultat</h1>
         <h2>{result.score > result.questions.split(", ").length / 2 ? "🥳" : "😕"}</h2>
         <p>{`Du klarte ${result.score} av ${result.questions.split(", ").length} spørsmål`}</p>
@@ -37,6 +37,7 @@ export default function Results(props) {
 
 // Typechecking proptypes
 Results.propTypes = {
+  nodeRef: PropTypes.object.isRequired,
   result: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   setDone: PropTypes.func.isRequired

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./App.css";
 import Quiz from "./components/Quiz";
@@ -8,7 +8,7 @@ import Results from "./components/Results";
  * Komponent animasjon
  * @param {Boolean} in - boolean for om komponent skal animeres inn/ut
  */
-const SlideIn = ({ in: inProp, nodeRef: nodeRef, ...props }) => (
+const SlideIn = ({ in: inProp, nodeRef, ...props }) => (
   <CSSTransition
     in={inProp}
     nodeRef={nodeRef}
@@ -25,6 +25,8 @@ export default function App() {
   const [gameDone, setDone] = useState(false);
   const [result, setResult] = useState({});
   const [loading, setLoading] = useState(true);
+  const quizRef = useRef(null);
+  const resultsRef = useRef(null);
 
   /**
    * Hent resultat for runde
@@ -53,15 +55,21 @@ export default function App() {
   return (
     <>
       <h1 id="header">Quiz app</h1>
-      <SlideIn in={!gameDone}>
+      <SlideIn in={!gameDone} nodeRef={quizRef}>
         <Quiz
+          nodeRef={quizRef}
           gameDone={gameDone}
           setDone={setDone}
           fetchResults={fetchResults}
         />
       </SlideIn>
-      <SlideIn in={gameDone}>
-        <Results setDone={setDone} loading={loading} result={result} />
+      <SlideIn in={gameDone} nodeRef={resultsRef}>
+        <Results
+          nodeRef={resultsRef}
+          setDone={setDone}
+          loading={loading}
+          result={result}
+        />
       </SlideIn>
     </>
   );

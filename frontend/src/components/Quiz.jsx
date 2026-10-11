@@ -1,9 +1,9 @@
-import React, { Component, createRef } from "react";
+import { Component } from "react";
 import Question from "./Question";
 import Options from "./Options";
 import ProgressIndicator from "./ProgressIndicator";
 import "../css/quiz.css";
-import Loader from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 import PropTypes from "prop-types";
 
 export default class Quiz extends Component {
@@ -18,7 +18,6 @@ export default class Quiz extends Component {
       quizDataset: [],
       loading: true,
     };
-    this.nodeRef = createRef(null);
   }
 
   componentDidMount() {
@@ -119,13 +118,13 @@ export default class Quiz extends Component {
 
     if (loading) {
       return (
-        <div ref={this.nodeRef} className="quiz-container" style={{ padding: "100px 0" }}>
-          <Loader type="Oval" color="#2a9d8f" loading={loading} />
+        <div ref={this.props.nodeRef} className="quiz-container" style={{ padding: "100px 0" }}>
+          <Oval height={80} width={80} color="#2a9d8f" secondaryColor="#2a9d8f" wrapperStyle={{ justifyContent: "center" }} />
         </div>
       );
     } else {
       return (
-        <div ref={this.nodeRef} className="quiz-container">
+        <div ref={this.props.nodeRef} className="quiz-container">
           <Question question={quizDataset[currentQuestionIndex].question} />
           <ProgressIndicator
             quizData={quizDataset}
@@ -153,6 +152,7 @@ export default class Quiz extends Component {
 
 // Typechecking proptypes
 Quiz.propTypes = {
+  nodeRef: PropTypes.object.isRequired,
   gameDone: PropTypes.bool.isRequired,
   setDone: PropTypes.func.isRequired,
   fetchResults: PropTypes.func.isRequired,
