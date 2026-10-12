@@ -22,14 +22,16 @@ public class QuizappApplication {
 
 		// Lag liste med spørmsål og fyll opp med data
 		List<Question> questionSet = new ArrayList<>();
-		questionSet.add(new Question("Hva er det høyeste fjellet i Norge?", "Himalaya, Himmelbjerget, Galdhøpiggen, Høyfjellet", "Galdhøpiggen", 2));
-		questionSet.add(new Question("Hvem er CEO for Tesla Motors?", "Bill Gates, Tim Cook, Elon Musk", "Elon Musk", 2));
-		questionSet.add(new Question("Hvem malte Mona Lisa?", "Claude Monet, Leonardo da Vinci, Vincent Van Gogh, Pablo Picasso", "Leonardo da Vinci", 1));
-		questionSet.add(new Question("Hva er verdens lengste elv?", "Nilen, Glomma, Amazonas-Apurímac, Mississippi–Missouri", "Nilen", 0));
+		questionSet.add(new Question("Hva er det høyeste fjellet i Norge?", List.of("Himalaya", "Himmelbjerget", "Galdhøpiggen", "Høyfjellet"), "Galdhøpiggen", 2));
+		questionSet.add(new Question("Hvem er CEO for Tesla Motors?", List.of("Bill Gates", "Tim Cook", "Elon Musk"), "Elon Musk", 2));
+		questionSet.add(new Question("Hvem malte Mona Lisa?", List.of("Claude Monet", "Leonardo da Vinci", "Vincent Van Gogh", "Pablo Picasso"), "Leonardo da Vinci", 1));
+		questionSet.add(new Question("Hva er verdens lengste elv?", List.of("Nilen", "Glomma", "Amazonas-Apurímac", "Mississippi-Missouri"), "Nilen", 0));
 
 		return args -> {
-			// Lagre spørsmålsett til database på oppstart
-			repository.saveAll( questionSet );
+			// Lagre spørsmålsett til database på oppstart, kun hvis tom (unngår duplikater)
+			if (repository.count() == 0) {
+				repository.saveAll( questionSet );
+			}
 		};
 	}
 

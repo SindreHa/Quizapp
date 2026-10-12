@@ -20,15 +20,14 @@ export default function Results(props) {
     return (
       <div ref={nodeRef} className="results-container">
         <h1>Resultat</h1>
-        <h2>{result.score > result.questions.split(", ").length / 2 ? "🥳" : "😕"}</h2>
-        <p>{`Du klarte ${result.score} av ${result.questions.split(", ").length} spørsmål`}</p>
+        <h2>{result.score > result.questions.length / 2 ? "🥳" : "😕"}</h2>
+        <p>{`Du klarte ${result.score} av ${result.questions.length} spørsmål`}</p>
         <button onClick={() => setHidden(!hidden)}>{hidden ? "Se fasit" : "Skjul fasit"}</button>
         <QuizAnswers 
           hidden={hidden}
           questions={result.questions} 
           answers={result.answers} 
-          userAnswers={result.userAnswers}
-          loading={loading}/>
+          userAnswers={result.userAnswers}/>
         <button onClick={() => props.setDone(false)}>Ta quiz på nytt</button>
       </div>
     );

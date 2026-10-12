@@ -48,7 +48,7 @@ export default class Quiz extends Component {
 
   logAnswer = () => {
     const { currentQuestionIndex, quizDataset, myAnswer } = this.state;
-    const options = quizDataset[currentQuestionIndex].options.split(", ");
+    const { options } = quizDataset[currentQuestionIndex];
 
     /**
      * Opprett answer objekt med spørsmål og svar data

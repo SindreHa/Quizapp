@@ -36,19 +36,19 @@ public class QuizController {
         Game game = new Game();
 
         // Lag liste med brukersvar hentet fra POST request
-        ArrayList<String> userAnswers = new ArrayList<>();
-        ArrayList<Integer> userAnswersIds = new ArrayList<>();
+        List<String> userAnswers = new ArrayList<>();
+        List<Integer> userAnswersIds = new ArrayList<>();
         answerList.forEach( (answer) -> {
             // Hent ut svar
             userAnswers.add(answer.getAnswer());
             userAnswersIds.add(answer.getAnswer_id());
         });
-        game.setUserAnswers(userAnswers.toString());
+        game.setUserAnswers(userAnswers);
 
         // Lag liste med fasit på svar hentet fra database
-        ArrayList<String> questions = new ArrayList<>();
-        ArrayList<String> questionanswers = new ArrayList<>();
-        ArrayList<Integer> questionsIds = new ArrayList<>();
+        List<String> questions = new ArrayList<>();
+        List<String> questionanswers = new ArrayList<>();
+        List<Integer> questionsIds = new ArrayList<>();
         Iterable<Question> list = questionRepository.findAll();
         list.forEach( (question) -> {
             // Hent ut fasit svar
@@ -56,8 +56,8 @@ public class QuizController {
             questionanswers.add(question.getAnswer());
             questionsIds.add(question.getAnswer_id());
         });
-        game.setQuestions(questions.toString());
-        game.setAnswers(questionanswers.toString());
+        game.setQuestions(questions);
+        game.setAnswers(questionanswers);
 
         int score = 0;
 

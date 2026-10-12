@@ -20,18 +20,7 @@ export default function QuizAnswers(props) {
   // nodeRef for CSSTransition
   const nodeRef = useRef(null)
 
-  // Sett array variabler med split av strings hentet fra DB
-  let questions,
-    answers,
-    userAnswers = [];
-  if (!props.loading) {
-    // eslint-disable-next-line
-    questions = props.questions.replace(/[\[\]']+/g, "").split(", ");
-    // eslint-disable-next-line
-    answers = props.answers.replace(/[\[\]']+/g, "").split(", ");
-    // eslint-disable-next-line
-    userAnswers = props.userAnswers.replace(/[\[\]']+/g, "").split(", ");
-  }
+  const { questions = [], answers = [], userAnswers = [] } = props;
 
   return (
     <FadeIn in={!props.hidden} nodeRef={nodeRef}>

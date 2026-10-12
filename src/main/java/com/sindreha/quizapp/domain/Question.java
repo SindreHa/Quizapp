@@ -2,9 +2,13 @@ package com.sindreha.quizapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OrderColumn;
+import java.util.List;
 
 @Entity
 public class Question {
@@ -12,13 +16,15 @@ public class Question {
     @Id @GeneratedValue
     private int id;
     private String question;
-    private String options;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @OrderColumn
+    private List<String> options;
     private String answer;
     private int answer_id;
 
     public Question() {}
 
-    public Question(String question, String options, String answer , int answer_id) {
+    public Question(String question, List<String> options, String answer , int answer_id) {
         this.question = question;
         this.answer = answer;
         this.options = options;
@@ -41,11 +47,11 @@ public class Question {
         this.question = question;
     }
 
-    public String getOptions() {
+    public List<String> getOptions() {
         return options;
     }
 
-    public void setOptions(String options) {
+    public void setOptions(List<String> options) {
         this.options = options;
     }
 
@@ -74,7 +80,7 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", options='" + options + '\'' +
+                ", options=" + options +
                 ", answer='" + answer + '\'' +
                 ", answer_id=" + answer_id +
                 '}';
